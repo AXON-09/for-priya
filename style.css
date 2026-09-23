@@ -1536,7 +1536,22 @@ html, body {
   }
 
   .music-widget {
-    top: 14px;
-    right: 14px;
+    top: max(14px, env(safe-area-inset-top, 14px));
+    right: max(14px, env(safe-area-inset-right, 14px));
+    z-index: 1000;
+  }
+
+  .music-btn {
+    width: 42px;
+    height: 42px;
+    box-shadow: 0 4px 14px rgba(184, 115, 131, 0.25);
+  }
+
+  .music-icon {
+    font-size: 1.1rem;
+  }
+
+  .music-banner {
+    display: none !important;
   }
 }
