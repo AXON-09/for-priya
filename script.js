@@ -741,12 +741,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Centralized event listener using event delegation for all interactive elements
-  document.addEventListener('pointerdown', (e) => {
+  function handleHapticTap(e) {
     const interactiveTarget = e.target.closest('button, [role="button"], .btn, .envelope-box, .tap-heart-btn, .music-btn, a');
     if (interactiveTarget) {
       triggerHeartbeatHaptic();
     }
-  }, { passive: true });
+  }
+
+  document.addEventListener('pointerdown', handleHapticTap, { passive: true });
+  document.addEventListener('touchstart', handleHapticTap, { passive: true });
 
   // ==========================================================================
   // PAGE 5: BIRTHDAY & BEATING HEART TAP
