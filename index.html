@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>A Story For Priya ❤️</title>
+  <meta name="description" content="A romantic interactive love story and birthday celebration for Priya from Ashu.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient floating particles canvas -->
+  <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+  
+  <!-- Confetti canvas -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Persistent Floating Music Widget -->
+  <aside class="music-widget" id="musicWidget">
+    <button class="music-btn" id="musicToggleBtn" aria-label="Toggle romantic background music" title="Toggle Romantic Background Music">
+      <span class="music-icon" id="musicIcon">🎵</span>
+      <span class="music-waves" id="musicWaves">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </span>
+    </button>
+    <div class="music-banner" id="musicBanner">
+      <span class="music-banner-text">Violin Melody</span>
+    </div>
+  </aside>
+
+  <!-- Global Persistent Audio Element -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="assets/romantic-violin.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Main Experience -->
+  <main class="app-container" id="appContainer">
+
+    <!-- ==========================================
+         PAGE 1: FAKE 404 SCREEN
+         ========================================== -->
+    <section class="page-section active" id="page1" data-page="1">
+      <div class="glass-card error-card">
+        <div class="error-badge">404</div>
+        <h1 class="page-title serif">Page Not Found</h1>
+        <p class="subtitle">Oops... something seems to be missing.</p>
+        <p class="body-text dim">Maybe the page you're looking for isn't here...</p>
+        
+        <div class="action-wrap">
+          <button class="btn btn-primary glow-btn" id="p1RefreshBtn" aria-label="Refresh to reveal story">
+            <span>REFRESH</span> <span class="heart-icon">❤️</span>
+          </button>
+        </div>
+        <p class="sub-hint">Tap to start our little story</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 2: THE PROPOSAL & RUNNING NO BUTTON
+         ========================================== -->
+    <section class="page-section" id="page2" data-page="2">
+      <div class="glass-card proposal-card" id="proposalCard">
+        <div class="tag-pill">A Question From The Heart</div>
+        
+        <h2 class="serif recipient-name">Priya...</h2>
+        
+        <p class="proposal-quote">
+          "I've asked you many times for the one thing my heart keeps asking for..."
+        </p>
+        
+        <div class="proposal-main-question">
+          <h1 class="serif highlight-question">Will you be mine?</h1>
+          <p class="proposal-subtext">
+            Not just for today...<br>
+            <span class="accent-text">but for all the little tomorrows?</span>
+          </p>
+        </div>
+
+        <!-- Buttons Arena -->
+        <div class="proposal-btn-zone" id="proposalBtnZone">
+          <button class="btn btn-yes pulse-btn" id="p2YesBtn">
+            <span>YES</span> <span class="btn-emoji">❤️</span>
+          </button>
+          
+          <button class="btn btn-no" id="p2NoBtn">
+            <span>NO</span> <span class="btn-emoji">😭</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Plead message bubble -->
+        <div class="plead-bubble" id="p2PleadBubble" aria-live="polite"></div>
+
+        <!-- Ashu Pleading Face Modal Card -->
+        <div class="ashu-plead-card" id="ashuPleadCard">
+          <div class="ashu-img-wrapper">
+            <img src="assets/my-face.png" alt="Ashu's pleading innocent face" id="ashuFaceImg" class="fallbackable-img" data-caption="🥺 Ashu Pleading Face">
+          </div>
+          <div class="plead-dialogue">
+            <p class="plead-line-1" id="pleadLine1">"Please YES bol do na... 🥺"</p>
+            <p class="plead-line-2">"Masoom chehra dekh ke..."</p>
+            <p class="plead-line-3">"itna toh banta hai na ❤️"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Celebration Overlay upon clicking YES -->
+      <div class="celebration-overlay" id="celebrationOverlay">
+        <div class="glass-card celebration-card">
+          <div class="celebration-emojis">😭❤️✨🎉</div>
+          <h2 class="serif cele-title-1">WAIT...</h2>
+          <h1 class="serif cele-title-2">YOU ACTUALLY SAID YES?!</h1>
+          <p class="cele-subtitle">I think I'm the happiest man alive right now. ❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 3: THE EYES (EMOTIONAL CONNECTION)
+         ========================================== -->
+    <section class="page-section" id="page3" data-page="3">
+      <div class="glass-card photo-feature-card">
+        <div class="floating-sparkle sparkle-1">✨</div>
+        <div class="floating-sparkle sparkle-2">✨</div>
+        
+        <p class="intro-whisper">I am the happiest man right now...</p>
+        
+        <div class="featured-image-frame" id="eyesImageFrame">
+          <div class="glow-backdrop"></div>
+          <img src="assets/eyes-photo.png" alt="Priya's beautiful eyes" id="eyesPhoto" class="reveal-img fallbackable-img" data-caption="✨ Those Beautiful Eyes ✨">
+        </div>
+        
+        <h2 class="serif eyes-caption">...to have fallen for these eyes. ❤️</h2>
+        
+        <div class="next-whisper-wrap">
+          <p class="whisper-text">There's something I've wanted to tell you...</p>
+          <button class="btn btn-secondary continue-btn" id="p3ContinueBtn">
+            <span>Read my heart</span> <span class="arrow-icon">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 4: THE LOVE LETTER (EMOTIONAL CENTERPIECE)
+         ========================================== -->
+    <section class="page-section" id="page4" data-page="4">
+      <div class="letter-stage-wrapper">
+        
+        <!-- Closed Envelope View -->
+        <div class="envelope-container" id="envelopeContainer">
+          <p class="envelope-pretitle">There's something I've been keeping in my heart...</p>
+          
+          <div class="envelope-box" id="interactiveEnvelope" tabindex="0" role="button" aria-label="Tap the envelope to open love letter">
+            <div class="env-back"></div>
+            <div class="env-letter-peek" id="envLetterPeek">
+              <div class="peek-decor"></div>
+            </div>
+            <div class="env-pocket"></div>
+            <div class="env-flap" id="envelopeFlap">
+              <div class="wax-seal-badge">💌</div>
+            </div>
+          </div>
+          
+          <p class="envelope-prompt pulse-text">
+            <span>✨ Tap the letter to open ✨</span>
+          </p>
+        </div>
+
+        <!-- Open Letter View -->
+        <div class="open-letter-sheet" id="openLetterSheet">
+          <div class="letter-parchment">
+            <div class="letter-header">
+              <span class="letter-stamp">A Personal Love Letter</span>
+              <span class="letter-date">For Priya</span>
+            </div>
+
+            <div class="letter-content" id="letterContent">
+              <p class="letter-para p-lead">I love you, Priya. I really do.</p>
+              
+              <p class="letter-para">
+                I know I have made many mistakes, and there may be things that you might not be able to forgive me for. Maybe that's why you fear me sometimes.
+              </p>
+              
+              <p class="letter-para">
+                Even if you forgive me, I might not be able to forgive myself so easily. But from the bottom of my heart, I truly hope that someday you can forgive me and forget the things that hurt you.
+              </p>
+              
+              <p class="letter-para">
+                But even if you don't, let it be. Until you are mine, I am happy, and I will always try my best to make you happy.
+              </p>
+              
+              <p class="letter-para p-heart">I love you. ❤️</p>
+              
+              <p class="letter-para">
+                I want us to grow, develop, and become better versions of ourselves together, so that someday we can have our own happily ever after.
+              </p>
+              
+              <p class="letter-para">
+                That's all I wanted to say to you.
+              </p>
+              
+              <p class="letter-para">
+                Things that I couldn't say because we never really got the chance to be alone somewhere, and all of this has been sitting inside my heart for so long.
+              </p>
+              
+              <p class="letter-para">
+                I couldn't express it properly in front of you.
+              </p>
+              
+              <p class="letter-para">
+                I am probably the dumbest and most immature person when I'm with you. 😂
+              </p>
+              
+              <p class="letter-para">
+                And honestly... I like being that way with you.
+              </p>
+              
+              <p class="letter-para p-favorite">
+                Being a little smaller than you...<br>
+                getting scolded by you...<br>
+                and being <strong>LOVED</strong> by you —<br>
+                <em>that's my favourite part.</em>
+              </p>
+              
+              <p class="letter-para p-heart">And I love you.</p>
+              
+              <div class="letter-signature">
+                <span class="sig-prefix">Your loving,</span>
+                <span class="sig-name script-font">Ashu ❤️</span>
+              </div>
+            </div>
+
+            <div class="letter-footer">
+              <div class="letter-closing-note">
+                <span class="heart-symbol">❤️</span>
+                <p>Some things are easier to write than to say.</p>
+              </div>
+              <button class="btn btn-primary letter-continue-btn" id="p4ContinueBtn">
+                <span>Continue</span> <span class="arrow-icon">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 5: BIRTHDAY CELEBRATION (3 PHOTOS)
+         ========================================== -->
+    <section class="page-section" id="page5" data-page="5">
+      <div class="glass-card birthday-card">
+        <div class="bday-sparkle-ribbon">🎂 ✨ 🎈 ✨ 💖</div>
+        
+        <h1 class="serif bday-title">Happy Birthday, Priya ❤️</h1>
+        <p class="bday-subtitle">Today is about you.</p>
+
+        <!-- 3 Photos on the Same Page -->
+        <div class="bday-gallery">
+          <div class="photo-card" id="bdayCard1">
+            <div class="photo-polaroid">
+              <div class="polaroid-img-frame">
+                <img src="assets/priya-1.jpg" alt="Priya's beautiful smile" class="bday-photo fallbackable-img" data-caption="Your smile ❤️">
+              </div>
+              <span class="photo-caption script-font">Your smile ❤️</span>
+            </div>
+          </div>
+
+          <div class="photo-card" id="bdayCard2">
+            <div class="photo-polaroid">
+              <div class="polaroid-img-frame">
+                <img src="assets/priya-2.jpeg" alt="Priya's sweetest expression" class="bday-photo fallbackable-img" data-caption="That beautiful face 🥺">
+              </div>
+              <span class="photo-caption script-font">That beautiful face 🥺</span>
+            </div>
+          </div>
+
+          <div class="photo-card" id="bdayCard3">
+            <div class="photo-polaroid">
+              <div class="polaroid-img-frame">
+                <img src="assets/priya-3.jpeg" alt="Priya my favourite person" class="bday-photo fallbackable-img" data-caption="My favourite person ❤️">
+              </div>
+              <span class="photo-caption script-font">My favourite person ❤️</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Birthday Message -->
+        <div class="bday-wish-box">
+          <p class="wish-line-1">
+            "Happy Birthday to the girl who somehow makes my world feel a little more beautiful."
+          </p>
+          <p class="wish-line-2">
+            "I hope this year gives you more smiles, more beautiful memories, and everything your heart wishes for."
+          </p>
+          <p class="wish-line-3 serif">
+            Happy Birthday, Priya. ❤️
+          </p>
+        </div>
+
+        <!-- Pulsing Heart Tap Button -->
+        <div class="tap-heart-section">
+          <button class="tap-heart-btn" id="p5TapHeartBtn" aria-label="Tap the beating heart">
+            <div class="heart-pulse-ring ring-1"></div>
+            <div class="heart-pulse-ring ring-2"></div>
+            <div class="heart-core">
+              <span class="heart-glyph">❤️</span>
+              <span class="heart-label">TAP ME</span>
+            </div>
+          </button>
+          <p class="tap-prompt-text">A tiny surprise awaits...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 6: DATE REQUEST & PLAYFUL NO
+         ========================================== -->
+    <section class="page-section" id="page6" data-page="6">
+      <div class="glass-card date-card" id="dateCard">
+        <p class="date-pre">Okay... one last thing. 🥺</p>
+        
+        <h1 class="serif date-title">Please text me.</h1>
+        
+        <p class="date-whisper">
+          I'm waiting patiently for your reply...<br>
+          <span class="accent-text serif">...and for a date with you. ❤️</span>
+        </p>
+
+        <!-- Date Request Buttons -->
+        <div class="date-btn-zone" id="dateBtnZone">
+          <button class="btn btn-yes pulse-btn" id="p6GoBtn">
+            <span>GO</span> <span class="btn-emoji">❤️</span>
+          </button>
+          
+          <button class="btn btn-no-soft" id="p6NoBtn">
+            <span>NO</span> <span class="btn-emoji">😭</span>
+          </button>
+        </div>
+
+        <!-- Date Playful Response Bubble -->
+        <div class="date-plead-bubble" id="datePleadBubble" aria-live="polite"></div>
+      </div>
+
+      <!-- Date Confirmation Modal -->
+      <div class="date-confirm-modal" id="dateConfirmModal">
+        <div class="glass-card date-confirm-card">
+          <div class="confirm-emoji">❤️😭🎉</div>
+          <h2 class="serif confirm-title" id="dateConfirmTitle">I KNEW IT. ❤️😭</h2>
+          <p class="confirm-text" id="dateConfirmText">Date confirmed in my heart.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 7 / 8: FINAL EMOTIONAL MESSAGE
+         ========================================== -->
+    <section class="page-section" id="page7" data-page="7">
+      <div class="glass-card final-card">
+        <div class="peaceful-glow"></div>
+
+        <div class="final-text-sequence" id="finalSequence">
+          <p class="final-line final-1">I'm just waiting...</p>
+          <p class="final-line final-2">I keep wondering how beautiful you'll look when we finally meet.</p>
+          <p class="final-line final-3">And somehow, just thinking about it makes me happy. ❤️</p>
+          
+          <div class="final-break"></div>
+          
+          <p class="final-line final-4">Until then...<br><em>I'll be waiting.</em></p>
+          
+          <div class="final-signature">
+            <span class="script-font sig-big">— Ashu ❤️</span>
+          </div>
+
+          <div class="final-ending-salute">
+            <p class="serif final-bday-note">Happy Birthday, Priya.</p>
+            <div class="end-hearts">🌸 💖 🌸</div>
+          </div>
+        </div>
+
+        <div class="final-replay-wrap">
+          <button class="btn btn-subtle" id="replayStoryBtn">
+            <span>Replay our story</span> <span class="heart-icon">↺</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
