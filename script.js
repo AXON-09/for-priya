@@ -720,9 +720,29 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // PAGE 5: BIRTHDAY & BEATING HEART TAP
+  // PAGE 5: BIRTHDAY & BEATING HEART TAP (WITH HEARTBEAT HAPTIC FEEDBACK)
   // ==========================================================================
+  let lastHeartVibrateTime = 0;
+
+  function triggerHeartbeatHaptic() {
+    if ('vibrate' in navigator) {
+      const now = Date.now();
+      // Prevent overlapping vibration patterns if tapped rapidly
+      if (now - lastHeartVibrateTime < 400) return;
+      lastHeartVibrateTime = now;
+
+      try {
+        // Heartbeat pattern: beat (60ms) -> pause (50ms) -> beat (100ms)
+        navigator.vibrate([60, 50, 100]);
+      } catch (err) {
+        // Graceful fallback for devices restricting vibration
+      }
+    }
+  }
+
   p5TapHeartBtn.addEventListener('click', (e) => {
+    triggerHeartbeatHaptic();
+
     const rect = p5TapHeartBtn.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
