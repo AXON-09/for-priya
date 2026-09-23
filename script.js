@@ -720,29 +720,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // PAGE 5: BIRTHDAY & BEATING HEART TAP (WITH HEARTBEAT HAPTIC FEEDBACK)
+  // CENTRALIZED HEARTBEAT HAPTIC FEEDBACK (FOR ALL BUTTONS & INTERACTIVE CONTROLS)
   // ==========================================================================
-  let lastHeartVibrateTime = 0;
+  let lastHapticVibrateTime = 0;
 
   function triggerHeartbeatHaptic() {
     if ('vibrate' in navigator) {
       const now = Date.now();
-      // Prevent overlapping vibration patterns if tapped rapidly
-      if (now - lastHeartVibrateTime < 400) return;
-      lastHeartVibrateTime = now;
+      // Prevent overlapping vibration patterns if user taps rapidly (350ms window)
+      if (now - lastHapticVibrateTime < 350) return;
+      lastHapticVibrateTime = now;
 
       try {
         // Heartbeat pattern: beat (60ms) -> pause (50ms) -> beat (100ms)
         navigator.vibrate([60, 50, 100]);
       } catch (err) {
-        // Graceful fallback for devices restricting vibration
+        // Graceful fallback for devices/browsers that restrict vibration
       }
     }
   }
 
-  p5TapHeartBtn.addEventListener('click', (e) => {
-    triggerHeartbeatHaptic();
+  // Centralized event listener using event delegation for all interactive elements
+  document.addEventListener('pointerdown', (e) => {
+    const interactiveTarget = e.target.closest('button, [role="button"], .btn, .envelope-box, .tap-heart-btn, .music-btn, a');
+    if (interactiveTarget) {
+      triggerHeartbeatHaptic();
+    }
+  }, { passive: true });
 
+  // ==========================================================================
+  // PAGE 5: BIRTHDAY & BEATING HEART TAP
+  // ==========================================================================
+  p5TapHeartBtn.addEventListener('click', (e) => {
     const rect = p5TapHeartBtn.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
